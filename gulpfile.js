@@ -10,14 +10,25 @@ var            gulp = require( 'gulp' ),
              jshint = require( "gulp-jshint" ),
             stylish = require( 'jshint-stylish' );
 
-// paths & files
-var path = {
-        src: 'src/',
-       html: 'src/**/*.html',
-         js: 'src/js/*.js',
-       sass: 'src/sass/**/*.scss',
-        css: 'src/css/',
+// source assets
+var src = {
+     root: 'src/',
+     html: 'src/**/*.html',
+     sass: 'src/sass/**/*.scss',
+       js: 'src/js/**/*.js',
+      img: 'src/img/**/*'
 };
+
+// distribution directories
+var dist = {
+  root: 'dist/',
+   css: 'dist/css/',
+    js: 'dist/js/',
+   img: 'dist/img/'
+};
+
+// ignore any vendor files
+var ignoreVendor = '!src/**/vendor/**/*';
 
 // ports
 var localPort =  4000,
@@ -28,7 +39,7 @@ gulp.task( 'server', function() {
   var server = connect();
 
   server.use( connectLivereload( { port: lrPort } ) );
-  server.use( connect.static( path.src ) );
+  server.use( connect.static( dist.root ) );
   server.listen( localPort );
 
   console.log( "\nlocal server running at http://localhost:" + localPort + "/\n" );
@@ -36,35 +47,57 @@ gulp.task( 'server', function() {
 
 // jshint
 gulp.task( 'jshint', function() {
-  gulp.src( path.js )
+  gulp.src( [ src.js, ignoreVendor ] )
     .pipe( jshint() )
     .pipe( jshint.reporter( stylish ) );
 });
 
 // compile sass
 gulp.task( 'sass', function() {
-  gulp.src( path.sass )
+  gulp.src( src.sass )
     .pipe( sass({
       outputStyle: [ 'expanded' ],
       sourceComments: 'normal',
       errLogToConsole: true
     }))
     .pipe( prefix() )
-    .pipe( gulp.dest( path.css ) );
+    .pipe( gulp.dest( dist.css ) );
+});
+
+// copy javascript
+gulp.task( 'copyJs', function() {
+  gulp.src( src.js )
+    .pipe( gulp.dest( dist.js ) );
+});
+
+// copy html
+gulp.task( 'copyHtml', function() {
+  gulp.src( src.html )
+    .pipe( gulp.dest( dist.root ) );
+});
+
+// copy images
+gulp.task( 'copyImg', function() {
+  gulp.src( src.img )
+    .pipe( gulp.dest( dist.img ) );
 });
 
 // watch file
-gulp.task( 'watch', function(done) {
+gulp.task( 'watch', function( done ) {
   var lrServer = gulpLivereload();
 
-  gulp.watch( [ path.html, path.js, path.css + '/**/*.css' ] )
+  gulp.watch( dist.root + '**/*' )
     .on( 'change', function( file ) {
       lrServer.changed( file.path );
     });
 
-  gulp.watch( path.js, ['jshint'] );
+  gulp.watch( src.html, [ 'copyHtml' ] );
 
-  gulp.watch( path.sass, ['sass'] );
+  gulp.watch( src.sass, [ 'sass' ] );
+
+  gulp.watch( src.js, [ 'jshint', 'copyJs' ] );
+
+  gulp.watch( src.img, [ 'copyImg' ] );
 });
 
 // default task
