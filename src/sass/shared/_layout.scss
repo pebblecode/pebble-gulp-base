@@ -17,6 +17,11 @@ body {
 
 }
 
+// Images
+img {
+  max-width: 100%;
+}
+
 .right {
   float: right;
 }
@@ -27,4 +32,9 @@ body {
 
 .no-scroll {
   overflow: hidden;
+}
+
+ul.text-list {
+  list-style: disc;
+  padding-left: 1em;
 }
