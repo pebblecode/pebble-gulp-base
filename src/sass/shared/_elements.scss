@@ -2,35 +2,10 @@
 // ELEMENTS
 //===============================================================
 // Buttons
+.btn,
 button {
-  border: none;
-  border-radius: 0;
-  background: none;
-  -webkit-appearance: none;
-
-  &:focus {
-    outline: none;
-  }
-}
-
-.btn {
-  padding-bottom: 4px;
-  border-bottom: 2px solid;
-  transition: 0.1s;
-
-  &:hover {
-    padding-bottom: 7px;
-  }
-}
-
-// Forms
-input, textarea {
-  padding: 10px;
-  display: block;
-  -webkit-appearance: none;
-  border-radius: 0;
-
-  &:focus{
-    outline: none;
-  }
+  appearance: none;
+  border: 0;
+  outline: none;
+  background: $primary;
 }
