@@ -1,0 +1,57 @@
+//===============================================================
+// GRID
+//===============================================================
+// grid breakpoints
+$large: 1000px;
+$medium: 650px;
+$small: 500px;
+
+// grid dimensions
+$gutter: 20px;
+
+.grid {
+  @include clearfix;
+
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.padded {
+  padding: $gutter;
+}
+
+[class*='col-'] {
+  float: left;
+  padding-right: $gutter;
+  padding-left: $gutter;
+}
+
+.col-1-1 { width: 100%; }
+.col-2-3 { width: 66.66%; }
+.col-1-3 { width: 33.33%; }
+.col-1-2 { width: 50%; }
+.col-1-4 { width: 25%; }
+.col-1-6 { width: 16.6666%; }
+.col-1-8 { width: 12.5%; }
+
+@media screen and ( max-width: $small ) {
+  [class*='col-'] {
+    width: 100%;
+    float: none;
+  }
+
+  .small-col-2-3,
+  .small-col-1-3,
+  .small-col-1-2,
+  .small-col-1-4,
+  .small-col-1-8 {
+    float: left;
+  }
+
+  .small-col-2-3 { width: 66.66%; }
+  .small-col-1-3 { width: 33.33%; }
+  .small-col-1-2 { width: 50%; }
+  .small-col-1-4 { width: 25%; }
+  .small-col-1-6 { width: 16.6666%; }
+  .small-col-1-8 { width: 12.5%; }
+}

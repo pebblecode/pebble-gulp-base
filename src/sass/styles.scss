@@ -1,40 +1,43 @@
-//===============================================================================
+//===============================================================
 // IMPORTS
-//===============================================================================
+//===============================================================
 // normalize.css v3.0.0 | MIT License | git.io/normalize
 @import "_normalize.scss";
 
-// define mixins & functions
+// Global Variables: Colours, type sizes etc.
+@import "_global-variables.scss";
+
+// Mixins: Fixes, recurring blocks of styling etc.
 @import "_mixins.scss";
 
-//===============================================================================
-// VARIABLES
-//===============================================================================
-$paper:  white;
-$ink:    black;
+// Fonts: @font-face
+@import "_fonts.scss";
 
-//===============================================================================
-// BASCIS
-//===============================================================================
-*,
-*::before,
-*:after {
-  box-sizing: border-box;
-}
+// Animations: CSS animations
+@import "_animations.scss";
 
-ul {
-  padding: 0;
-  list-style: none;
-}
 
-html,
-body {
-  background-color: $paper;
-  color: $ink;
-  font-family: sans-serif;
-  line-height: 1.4;
-}
+// Shared components and styles
+//===============================================================
+// Grid: Global grid styles and variables
+@import "shared/_global-grid.scss";
 
-//===============================================================================
-// STYLES
-//===============================================================================
+// Layout: Global base layout
+@import "shared/_layout.scss";
+
+// Typography: Headings, hierachy etc.
+@import "shared/_typography.scss";
+
+// Elements: Forms, buttons, lists etc.
+@import "shared/_elements.scss";
+
+// Global Header: Header visible globally
+@import "shared/_global-header.scss";
+
+// Global Footer: Footer visible globally
+@import "shared/_global-footer.scss";
+
+// Page layouts
+//===============================================================
+// Home: Styles got Home page
+@import "pages/_home.scss";

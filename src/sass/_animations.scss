@@ -1,0 +1,57 @@
+//===============================================================
+// ANIMATIONS
+//===============================================================
+// Pulsate
+// animation: pulse 0.6s infinite alternate;
+// @extend .pulse
+.pulse{ animation: pulse 0.6s infinite alternate; }
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.06) }
+}
+
+// Bounce in up
+// animation: bounceup 0.6s infinite alternate;
+// @extend .bounceup
+.bounceup { animation: bounceup 1s; }
+
+@keyframes bounceup {
+  0%, 60%, 75%, 90%, 100% { transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); }
+  0% { opacity: 0; transform: translate3d(0, 3000px, 0); }
+  60% { opacity: 1; transform: translate3d(0, -20px, 0); }
+  75% {ntransform: translate3d(0, 10px, 0); }
+  90% { transform: translate3d(0, -5px, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+
+// Tada
+// animation: tada 1s;
+// @extend .tada
+.tada { animation: tada 1s; }
+
+@keyframes tada {
+  0% { transform: scale3d(1, 1, 1); }
+  10%, 20% { transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -2deg); }
+  30%, 50%, 70%, 90% { transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 2deg); }
+  40%, 60%, 80% { transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -2deg);}
+  100% { transform: scale3d(1, 1, 1); }
+}
+
+
+
+// Wobble
+// animation: wobble 1s;
+// @extend .wobble
+.wobble { animation: wobble 2s; }
+
+@keyframes wobble {
+  0% { transform: none; }
+  15% { transform: translate3d(-20%, 0, 0) rotate3d(0, 0, 1, -2deg); }
+  30% { transform: translate3d(15%, 0, 0) rotate3d(0, 0, 1, 1deg); }
+  45% { transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg); }
+  60% { transform: translate3d(5%, 0, 0) rotate3d(0, 0, 1, 0deg); }
+  75% { transform: translate3d(-1%, 0, 0) rotate3d(0, 0, 1, -1deg); }
+  100% { transform: none; }
+}
