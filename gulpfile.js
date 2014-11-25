@@ -7,7 +7,7 @@ var            gulp = require( 'gulp' ),
      gulpLivereload = require( 'gulp-livereload' ),
                sass = require( 'gulp-sass' ),
              prefix = require( 'gulp-autoprefixer' ),
-             jshint = require( "gulp-jshint" ),
+             jshint = require( 'gulp-jshint' ),
             stylish = require( 'jshint-stylish' );
 
 // source assets
