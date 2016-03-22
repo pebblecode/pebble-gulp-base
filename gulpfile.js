@@ -1,14 +1,16 @@
 "use strict";
 
 // Plugins
-var            gulp = require( 'gulp' ),
-            connect = require( 'connect' ),
-  connectLivereload = require( 'connect-livereload' ),
-     gulpLivereload = require( 'gulp-livereload' ),
-               sass = require( 'gulp-sass' ),
-             prefix = require( 'gulp-autoprefixer' ),
-             jshint = require( "gulp-jshint" ),
-            stylish = require( 'jshint-stylish' );
+var            gulp = require('gulp'),
+            connect = require('connect'),
+  connectLivereload = require('connect-livereload'),
+     gulpLivereload = require('gulp-livereload'),
+               sass = require('gulp-sass'),
+             prefix = require('gulp-autoprefixer'),
+             jshint = require('gulp-jshint'),
+           sequence = require('gulp-sequence'),
+             rimraf = require('rimraf'),
+            stylish = require('jshint-stylish');
 
 // paths & files
 var path = {
@@ -53,6 +55,15 @@ gulp.task( 'sass', function() {
     .pipe( gulp.dest( path.css ) );
 });
 
+gulp.task('sass:build', function() {
+  gulp.src( path.sass )
+  .pipe( sass({
+    outputStyle:'compressed'
+  }))
+  .pipe( prefix() )
+  .pipe( gulp.dest( path.css ) );
+});
+
 // watch file
 gulp.task( 'watch', function(done) {
   var lrServer = gulpLivereload();
@@ -69,3 +80,24 @@ gulp.task( 'watch', function(done) {
 
 // default task
 gulp.task( 'default', [ 'server', 'watch' ] );
+
+gulp.task('copy:build', function() {
+  gulp.src([
+    './src/css/**/*.css',
+    './src/**/*.html',
+    './src/js/**/*.js',
+    './src/fonts/**/*.*',
+    './src/doc/**/*.*',
+    './src/img/**/*.*',
+    './src/favicon.ico'
+  ], { base: './src' })
+  .pipe(gulp.dest('dist'));
+});
+
+gulp.task('clean', function(cb) {
+  rimraf('./dist', cb);
+})
+
+gulp.task('build', function(cb) {
+  sequence('clean', 'sass:build', 'copy:build')(cb);
+});
