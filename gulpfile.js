@@ -1,16 +1,16 @@
 "use strict";
 
 // Plugins
-var            gulp = require( 'gulp' ),
-            connect = require( 'connect' ),
-  connectLivereload = require( 'connect-livereload' ),
-     gulpLivereload = require( 'gulp-livereload' ),
-               sass = require( 'gulp-sass' ),
-             prefix = require( 'gulp-autoprefixer' ),
-             jshint = require( "gulp-jshint" ),
-             sequence = require('gulp-sequence'),
+var            gulp = require('gulp'),
+            connect = require('connect'),
+  connectLivereload = require('connect-livereload'),
+     gulpLivereload = require('gulp-livereload'),
+               sass = require('gulp-sass'),
+             prefix = require('gulp-autoprefixer'),
+             jshint = require('gulp-jshint'),
+           sequence = require('gulp-sequence'),
              rimraf = require('rimraf'),
-            stylish = require( 'jshint-stylish' );
+            stylish = require('jshint-stylish');
 
 // paths & files
 var path = {
