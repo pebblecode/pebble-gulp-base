@@ -14,7 +14,10 @@
     "connect-livereload": "^0.5.4",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-livereload": "^3.8.1",
     "gulp-sass": "^2.3.0",
+    "jshint": "^2.9.2",
     "serve-static": "^1.10.2"
   }
 }

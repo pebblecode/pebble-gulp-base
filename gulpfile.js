@@ -1,12 +1,13 @@
 "use strict";
 
-// plugins
 var gulp = require('gulp'),
     connect = require('connect'),
     serveStatic = require('serve-static'),
     connectLivereload = require('connect-livereload'),
+    gulpLivereload = require('gulp-livereload'),
     sass = require('gulp-sass'),
-    prefix = require('gulp-autoprefixer');
+    prefix = require('gulp-autoprefixer'),
+    jshint = require('gulp-jshint');
 
 var path = {
    src: 'src/',
@@ -36,5 +37,28 @@ gulp.task('sass', function(){
       sourceComments: 'normal'
     }).on('error', sass.logError))
     .pipe(prefix())
-    .pipe(gulp.dest(path.css));
+    .pipe(gulp.dest(path.css))
+    .pipe(gulpLivereload());
 })
+
+gulp.task('jshint', function(){
+  gulp.src(path.js)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+    .pipe(gulpLivereload());
+});
+
+gulp.task('html', function(){
+  gulp.src(path.html)
+    .pipe(gulpLivereload());
+});
+
+gulp.task('watch', function(){
+  gulp.watch(path.sass, ['sass']);
+  gulp.watch(path.js, ['jshint']);
+  gulp.watch(path.html, ['html']);
+
+  gulpLivereload.listen();
+})
+
+gulp.task('default', ['server', 'watch']);
