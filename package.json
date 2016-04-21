@@ -7,7 +7,9 @@
     "type": "git",
     "url": "https://github.com/pebblecode/pebble-gulp-base"
   },
-  "scripts": {},
+  "scripts": {
+    "install": "gulp sass"
+  },
   "dependencies": {},
   "devDependencies": {
     "connect": "^3.4.1",
