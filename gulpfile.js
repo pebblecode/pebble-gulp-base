@@ -30,8 +30,8 @@ gulp.task('server', function(){
   console.log("\nlocal server running at http://localhost:" + localPort + "/\n");
 });
 
-gulp.task('styles', () => {
-  return gulp.src('src/postcss/styles.css')
+gulp.task('styles', function(){
+  gulp.src('src/postcss/styles.css')
     .pipe(postcss([
       require('precss'),
       require('autoprefixer'),
