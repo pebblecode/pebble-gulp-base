@@ -5,16 +5,16 @@ var gulp = require('gulp'),
     serveStatic = require('serve-static'),
     connectLivereload = require('connect-livereload'),
     gulpLivereload = require('gulp-livereload'),
-    sass = require('gulp-sass'),
-    prefix = require('gulp-autoprefixer'),
+    postcss = require('gulp-postcss'),
+    cssnano = require('gulp-cssnano'),
     jshint = require('gulp-jshint');
 
 var path = {
-   src: 'src/',
-  html: 'src/**/*.html',
-    js: 'src/js/*.js',
-  sass: 'src/sass/**/*.scss',
-   css: 'src/css/',
+       src: 'src/',
+      html: 'src/**/*.html',
+        js: 'src/js/*.js',
+   postcss: 'src/postcss/**/*.css',
+       css: 'src/',
 }
 
 var localPort = 4000,
@@ -30,16 +30,17 @@ gulp.task('server', function(){
   console.log("\nlocal server running at http://localhost:" + localPort + "/\n");
 });
 
-gulp.task('sass', function(){
-  gulp.src(path.sass)
-    .pipe(sass({
-      outputStyle: [ 'expanded' ],
-      sourceComments: 'normal'
-    }).on('error', sass.logError))
-    .pipe(prefix())
+gulp.task('styles', () => {
+  return gulp.src('src/postcss/styles.css')
+    .pipe(postcss([
+      require('precss'),
+      require('autoprefixer'),
+      require('postcss-reporter')
+    ]))
+    .pipe(cssnano())
     .pipe(gulp.dest(path.css))
     .pipe(gulpLivereload());
-})
+});
 
 gulp.task('jshint', function(){
   gulp.src(path.js)
@@ -54,11 +55,11 @@ gulp.task('html', function(){
 });
 
 gulp.task('watch', function(){
-  gulp.watch(path.sass, ['sass']);
+  gulp.watch(path.postcss, ['styles']);
   gulp.watch(path.js, ['jshint']);
   gulp.watch(path.html, ['html']);
 
   gulpLivereload.listen();
-})
+});
 
 gulp.task('default', ['server', 'watch']);

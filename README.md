@@ -1,6 +1,6 @@
 # Barebones gulp project
 
-Barebones gulp.js project. Gives you local server, liveReload, Sass, & jshint.
+Barebones gulp.js project. Gives you local server, liveReload, postcss, & jshint.
 
 ### getting started
 
