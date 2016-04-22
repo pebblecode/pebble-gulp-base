@@ -2,7 +2,7 @@
   "name": "barebones-gulp-project",
   "version": "0.1.0",
   "author": "pebble {code}",
-  "description": "gulp, localhost, livereload, sass, jshint",
+  "description": "gulp, localhost, livereload, postcss, jshint",
   "repository": {
     "type": "git",
     "url": "https://github.com/pebblecode/pebble-gulp-base"
