@@ -6,6 +6,8 @@ var gulp = require('gulp'),
     connectLivereload = require('connect-livereload'),
     gulpLivereload = require('gulp-livereload'),
     postcss = require('gulp-postcss'),
+    reporter = require('postcss-reporter'),
+    stylelint = require('stylelint'),
     cssnano = require('gulp-cssnano'),
     jshint = require('gulp-jshint');
 
@@ -17,7 +19,7 @@ var path = {
        css: 'src/',
 }
 
-var localPort = 4000,
+var localPort = 5000,
        lrPort = 35729;
 
 gulp.task('server', function(){
@@ -42,6 +44,14 @@ gulp.task('styles', function(){
     .pipe(gulpLivereload());
 });
 
+gulp.task('stylelint', function() {
+  return gulp.src('src/**/*.scss')
+    .pipe(postcss([
+      stylelint({ /* options */ }),
+      reporter({ clearMessages: true })
+    ]));
+});
+
 gulp.task('jshint', function(){
   gulp.src(path.js)
     .pipe(jshint())
@@ -56,6 +66,7 @@ gulp.task('html', function(){
 
 gulp.task('watch', function(){
   gulp.watch(path.postcss, ['styles']);
+  gulp.watch(path.postcss, ['stylelint']);
   gulp.watch(path.js, ['jshint']);
   gulp.watch(path.html, ['html']);
 
