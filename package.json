@@ -10,6 +10,7 @@
   "scripts": {
     "install": "gulp sass",
     "build": "gulp build",
+    "deploy": "gulp sass && gulp build && surge ./dist",
     "lint": "gulp jshint"
   },
   "devDependencies": {

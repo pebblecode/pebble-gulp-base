@@ -15,3 +15,13 @@ Install packages
 Run Gulp
 
 `gulp`
+
+
+## Deployment to surge.sh
+to deploy the site:
+
+```npm i -g surge```
+
+```surge login```
+
+```npm run deploy <sitename>.design.pebblecode.net```
