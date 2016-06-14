@@ -24,4 +24,4 @@ to deploy the site:
 
 ```surge login```
 
-```npm run deploy <sitename>.design.pebblecode.net```
+```surge ./dist <sitename>.design.pebblecode.net```
