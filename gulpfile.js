@@ -5,6 +5,7 @@ var            gulp = require('gulp'),
             connect = require('connect'),
   connectLivereload = require('connect-livereload'),
      gulpLivereload = require('gulp-livereload'),
+        serveStatic = require('serve-static'),
                sass = require('gulp-sass'),
              prefix = require('gulp-autoprefixer'),
              jshint = require('gulp-jshint'),
@@ -30,7 +31,7 @@ gulp.task( 'server', function() {
   var server = connect();
 
   server.use( connectLivereload( { port: lrPort } ) );
-  server.use( connect.static( path.src ) );
+  server.use( serveStatic( path.src ) );
   server.listen( localPort );
 
   console.log( "\nlocal server running at http://localhost:" + localPort + "/\n" );
