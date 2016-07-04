@@ -15,8 +15,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "gulp-sequence": "^0.4.5",
-    "rimraf": "^2.5.2",
     "connect": "^3.4.1",
     "connect-livereload": "^0.5.4",
     "gulp": "^3.9.1",
@@ -24,7 +22,10 @@
     "gulp-jshint": "^2.0.0",
     "gulp-livereload": "^3.8.1",
     "gulp-sass": "^2.3.0",
+    "gulp-sequence": "^0.4.5",
     "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
+    "rimraf": "^2.5.2",
     "serve-static": "^1.10.2"
   }
 }
